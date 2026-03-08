@@ -2,38 +2,99 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מדריך מקיף: פרומפט מצוין</title>
-  <style>body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.7}.wrap{max-width:1000px;margin:auto;padding:24px}.card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}code,pre{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe}a{color:#93c5fd}</style>
+  <title>מדריך מקיף: כתיבת פרומפטים ברמה גבוהה</title>
+  <style>
+    body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.8}
+    .wrap{max-width:1050px;margin:auto;padding:24px}
+    .card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}
+    pre,code{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe;white-space:pre-wrap}
+    a{color:#93c5fd}
+  </style>
 </head>
 <body>
 <div class="wrap">
   <a href="../guides.html">⬅ חזרה למדריכים</a>
-  <h1>מדריך מקיף: איך לכתוב פרומפט מצוין</h1>
+  <h1>מדריך מקיף: כתיבת פרומפטים ברמה גבוהה</h1>
+  <p>המדריך הזה מלמד איך להפוך בקשות כלליות לתוצאות עקביות, מדויקות ושימושיות.</p>
 
-  <section class="card"><h2>1) נוסחת הזהב לפרומפט</h2>
-  <p><strong>תפקיד</strong> + <strong>מטרה</strong> + <strong>הקשר</strong> + <strong>פורמט פלט</strong> + <strong>קריטריוני איכות</strong>.</p>
-  <pre>אתה [תפקיד].
-המטרה: [מה להפיק].
-הקשר: [מי הקהל, אילוצים].
-פורמט פלט: [נקודות/טבלה/JSON].
-איכות: [מדויק, קצר, עם דוגמאות].</pre></section>
+  <section class="card">
+    <h2>למה פרומפט טוב משנה את כל התוצאה?</h2>
+    <p>מודל שפה מגיב להקשר שאת/ה נותן/ת לו. פרומפט טוב חוסך חזרות, מקטין טעויות, ומקבל תשובה מדויקת יותר בפעם הראשונה.</p>
+  </section>
 
-  <section class="card"><h2>2) טעויות נפוצות</h2>
-  <ul><li>בקשה כללית מדי (“תכתוב לי על AI”).</li><li>ללא הקשר לקהל היעד.</li><li>ללא הגדרת אורך/מבנה פלט.</li><li>ללא דוגמה לתוצאה רצויה.</li></ul></section>
+  <section class="card">
+    <h2>מבנה מומלץ לפרומפט מקצועי</h2>
+    <ol>
+      <li><strong>תפקיד:</strong> מי המודל אמור להיות (יועץ, מפתח, עורך תוכן).</li>
+      <li><strong>מטרה:</strong> מה התוצר הסופי המדויק.</li>
+      <li><strong>הקשר:</strong> למי זה מיועד ומה הרקע.</li>
+      <li><strong>אילוצים:</strong> אורך, טון, שפה, מה לא לכלול.</li>
+      <li><strong>פורמט פלט:</strong> רשימה, טבלה, JSON, צעדים ממוספרים.</li>
+      <li><strong>קריטריון הצלחה:</strong> איך תזהה שהתשובה טובה.</li>
+    </ol>
+    <pre>אתה [תפקיד].
+המטרה: [תוצר מדויק].
+קהל יעד: [מתחיל/מקצועי/מנהלים].
+אילוצים: [אורך, סגנון, מה להימנע].
+פורמט פלט: [נקודות / טבלה / JSON].
+בדיקת איכות: [דיוק, דוגמאות, בהירות].</pre>
+  </section>
 
-  <section class="card"><h2>3) דוגמאות מוכנות</h2>
-  <p><strong>שיווק:</strong> “כתוב פוסט לינקדאין של 120–150 מילים על הטמעת Copilot בארגון SMB, בטון מקצועי ולא שיווקי.”</p>
-  <p><strong>פיתוח:</strong> “נתח קוד Python, מצא bottlenecks, הצע Refactor עם הסבר Big-O.”</p>
-  <p><strong>למידה:</strong> “הסבר לי RAG ברמת מתחיל, ואז תן דוגמה מעשית אחת.”</p></section>
+  <section class="card">
+    <h2>דוגמה מלאה 1 — שיווק</h2>
+    <pre>אתה קופירייטר B2B.
+כתוב פוסט לינקדאין של 130-160 מילים על שילוב AI במחלקת שירות.
+קהל יעד: מנהלי שירות בחברות SMB.
+טון: מקצועי, ענייני, בלי הייפ.
+פורמט: פתיח, 3 נקודות תועלת, שורת סיכום עם CTA עדין.
+אל תמציא נתונים מספריים ללא מקור.</pre>
+    <p><strong>למה זה טוב?</strong> כי יש תפקיד, קהל יעד, אורך, טון, מבנה ואילוצים ברורים.</p>
+  </section>
 
-  <section class="card"><h2>4) שיטת שיפור מהירה (Iterative Prompting)</h2>
-  <ol><li>גרסה ראשונה קצרה.</li><li>בקשת שיפור ממוקדת (“חדד את החלק של X”).</li><li>כפיית פורמט סופי (תבנית).</li><li>בדיקת עובדות מול מקורות.</li></ol></section>
+  <section class="card">
+    <h2>דוגמה מלאה 2 — קוד</h2>
+    <pre>אתה Senior Python Engineer.
+נתח את הקוד הבא מבחינת ביצועים וקריאות.
+תן:
+1) בעיות עיקריות
+2) שכתוב משופר
+3) הסבר קצר ל-Big-O
+4) בדיקות יחידה בסיסיות
+שמור על תאימות ל-Python 3.11.
+[הדבק קוד כאן]</pre>
+  </section>
 
-  <section class="card"><h2>5) צ'קליסט לפני שליחה</h2>
-  <ul><li>האם המטרה ברורה?</li><li>האם קהל היעד מוגדר?</li><li>האם הגדרתי פורמט פלט?</li><li>האם יש אילוצים (אורך, שפה, סגנון)?</li><li>האם ביקשתי בדיקת הנחות/שגיאות?</li></ul></section>
+  <section class="card">
+    <h2>שיטת שיפור ב-3 סבבים</h2>
+    <ol>
+      <li>סבב ראשון: בקשה בסיסית לקבלת כיוון.</li>
+      <li>סבב שני: חידוד נקודתי (דיוק/אורך/סגנון).</li>
+      <li>סבב שלישי: כפיית פורמט סופי וקריטריונים קשיחים.</li>
+    </ol>
+  </section>
 
-  <section class="card"><h2>מקורות והרחבות</h2>
-  <p><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank">OpenAI Prompt Engineering</a> · <a href="https://www.anthropic.com/engineering" target="_blank">Anthropic Engineering</a> · <a href="https://www.youtube.com/results?search_query=prompt+engineering+best+practices" target="_blank">YouTube: Prompt Engineering</a></p></section>
+  <section class="card">
+    <h2>תרגול עצמי</h2>
+    <p><strong>משימה:</strong> כתבו פרומפט שמייצר תוכנית לימוד של 4 שבועות ללימוד AI למתחילים.</p>
+    <p><strong>דרישות:</strong> עברית, 4 מודולים, כל מודול כולל תיאוריה+תרגיל+בדיקת הבנה.</p>
+    <details><summary>פתרון מוצע</summary>
+      <pre>אתה מנטור AI למתחילים.
+בנה תוכנית לימוד ל-4 שבועות (עברית).
+לכל שבוע כלול:
+- נושא מרכזי
+- 3 תתי-נושאים
+- תרגיל מעשי
+- שאלת בדיקה עצמית
+קהל יעד: ללא רקע טכני.
+טון: פשוט וברור.
+פורמט: טבלה עם עמודות שבוע/נושא/תרגיל/בדיקה.</pre>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>מקורות והרחבות</h2>
+    <p><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank">OpenAI Prompt Engineering</a> · <a href="https://www.anthropic.com/engineering" target="_blank">Anthropic Engineering</a> · <a href="https://www.youtube.com/results?search_query=prompt+engineering+best+practices" target="_blank">YouTube: Prompt Engineering</a></p>
+  </section>
 </div>
 </body>
 </html>

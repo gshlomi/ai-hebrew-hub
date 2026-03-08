@@ -1,13 +1,46 @@
 <!doctype html>
 <html lang="he" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>מדריך מקיף: בניית RAG בסיסי</title><style>body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.7}.wrap{max-width:1000px;margin:auto;padding:24px}.card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}pre{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe}a{color:#93c5fd}</style></head>
-<body><div class="wrap"><a href="../guides.html">⬅ חזרה למדריכים</a><h1>מדריך מקיף: בניית RAG בסיסי</h1>
-<section class="card"><h2>מה זה RAG?</h2><p>Retrieval-Augmented Generation: אחזור מידע רלוונטי ממקורות שלך, ואז יצירת תשובה שמבוססת על המידע שאוחזר.</p></section>
-<section class="card"><h2>ארכיטקטורה בסיסית (5 שלבים)</h2><ol><li>איסוף מסמכים</li><li>Chunking</li><li>Embeddings + Vector DB</li><li>Retrieval</li><li>Generation עם ציטוטים</li></ol></section>
-<section class="card"><h2>Pipeline מומלץ</h2><pre>documents -> chunks -> embeddings -> vector index
-user query -> embedding -> top-k retrieval -> LLM answer + sources</pre></section>
-<section class="card"><h2>החלטות חשובות</h2><ul><li>Chunk size: בדרך כלל 300–800 טוקנים.</li><li>Top-k: לרוב 3–8 מסמכים.</li><li>Hybrid search: וקטורי + מילולי כשצריך דיוק טרמינולוגי.</li><li>Always cite sources: חובה להציג מקור בכל תשובה.</li></ul></section>
-<section class="card"><h2>מדדי איכות</h2><ul><li>Precision@k ו-Recall@k לאחזור.</li><li>Faithfulness: האם התשובה נאמנה למקור.</li><li>Latency: זמן תגובה כולל.</li></ul></section>
-<section class="card"><h2>בעיות נפוצות ופתרונות</h2><ul><li>Hallucination → להכריח תשובה “רק מהמקור”.</li><li>Missing context → להגדיל top-k או chunk overlap.</li><li>Duplication → dedup על chunks לפני generation.</li></ul></section>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>מדריך מקיף: RAG מקצה לקצה</title><style>body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.8}.wrap{max-width:1050px;margin:auto;padding:24px}.card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}pre{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe;white-space:pre-wrap}a{color:#93c5fd}</style></head>
+<body><div class="wrap"><a href="../guides.html">⬅ חזרה למדריכים</a><h1>מדריך מקיף: בניית RAG מקצה לקצה</h1>
+
+<section class="card"><h2>מה זה RAG ולמה צריך אותו?</h2><p>RAG מחבר מודל שפה לידע אמיתי מתוך המסמכים שלך. במקום "להמציא", המודל נשען על מקורות מאוחזרים ומחזיר תשובה עם ציטוטים.</p></section>
+
+<section class="card"><h2>ארכיטקטורה מעשית</h2><ol><li>איסוף מסמכים (PDF/Notion/Docs)</li><li>ניקוי טקסט וחלוקה ל-chunks</li><li>יצירת Embeddings לכל chunk</li><li>שמירה ב-Vector DB</li><li>בעת שאילתה: Retrieval → Generation</li></ol></section>
+
+<section class="card"><h2>דוגמה מלאה (Pseudo-code)</h2>
+<pre># 1) טעינת מסמכים
+chunks = split_documents(docs, chunk_size=500, overlap=80)
+
+# 2) embedding + index
+vectors = embed(chunks)
+index = vector_db.upsert(vectors, metadata=source_info)
+
+# 3) שאילתה
+q_vec = embed([user_query])
+results = vector_db.search(q_vec, top_k=5)
+
+# 4) יצירת תשובה מבוססת מקורות
+context = join(results)
+answer = llm.generate(
+  prompt=f"ענה רק לפי ההקשר הבא:\n{context}\nשאלה:{user_query}\nציין מקורות"
+)
+return answer</pre>
+</section>
+
+<section class="card"><h2>בחירות תכנון חשובות</h2><ul><li><strong>Chunk size:</strong> 350–800 טוקנים.</li><li><strong>Overlap:</strong> 50–120 כדי לשמור רצף משמעות.</li><li><strong>Top-k:</strong> מתחילים ב-4–6 ומכיילים לפי דיוק.</li><li><strong>Filters:</strong> תאריך/מחלקה/שפה להגברת רלוונטיות.</li></ul></section>
+
+<section class="card"><h2>איך מודדים איכות?</h2><ul><li><strong>Retrieval quality:</strong> האם המסמכים שאוחזרו באמת רלוונטיים.</li><li><strong>Faithfulness:</strong> האם התשובה נאמנה למקור.</li><li><strong>Citation coverage:</strong> האם יש מקור לכל טענה.</li><li><strong>Latency + Cost:</strong> זמן ועלות לכל שאילתה.</li></ul></section>
+
+<section class="card"><h2>תקלות נפוצות + פתרון</h2><ul><li>תשובות כלליות מדי → חזק הוראה: "ענה רק מהמקורות".</li><li>החמצת מסמך חשוב → הגדל top-k + hybrid search.</li><li>כפילויות בתשובה → בצע dedup ל-chunks שחזרו.</li></ul></section>
+
+<section class="card"><h2>תרגול עצמי</h2><p><strong>משימה:</strong> בנה RAG קטן ל-20 מסמכי נהלים.</p><p><strong>יעדים:</strong> תשובה עם 2 מקורות לפחות וזמן תגובה < 4 שניות.</p>
+<details><summary>פתרון מוצע</summary>
+<pre>- Chunk size: 550, overlap: 80
+- Embedding model איכותי (multilingual אם יש עברית)
+- top-k = 5
+- Prompt קשיח: "אל תענה ללא מקור."
+- החזרת output בפורמט: תשובה + רשימת מקורות + confidence</pre>
+</details></section>
+
 <section class="card"><h2>מקורות והרחבות</h2><p><a href="https://arxiv.org/abs/2005.11401" target="_blank">RAG Paper</a> · <a href="https://python.langchain.com/docs/concepts/rag/" target="_blank">LangChain RAG</a> · <a href="https://www.youtube.com/results?search_query=RAG+tutorial" target="_blank">YouTube: RAG Tutorial</a></p></section>
 </div></body></html>

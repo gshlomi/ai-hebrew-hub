@@ -1,11 +1,56 @@
 <!doctype html>
 <html lang="he" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>מדריך מקיף: אוטומציה עם Agents</title><style>body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.7}.wrap{max-width:1000px;margin:auto;padding:24px}.card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}pre{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe}a{color:#93c5fd}</style></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>מדריך מקיף: אוטומציה עם Agents</title><style>body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.8}.wrap{max-width:1050px;margin:auto;padding:24px}.card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}pre{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe;white-space:pre-wrap}a{color:#93c5fd}</style></head>
 <body><div class="wrap"><a href="../guides.html">⬅ חזרה למדריכים</a><h1>מדריך מקיף: אוטומציה עם Agents</h1>
-<section class="card"><h2>מהו Agent?</h2><p>סוכן AI הוא זרימת עבודה שיכולה לתכנן, לקרוא כלים, לבצע שלבים, לבדוק תוצאה, ולתקן.</p></section>
-<section class="card"><h2>תבנית תכנון מומלצת</h2><pre>Goal -> Plan -> Tool Calls -> Verification -> Final Output</pre><p>מומלץ להגביל מספר צעדים וכלים כדי למנוע לולאות.</p></section>
-<section class="card"><h2>Use Cases פרקטיים</h2><ul><li>סיכום מיילים יומי עם תגיות.</li><li>עדכון CRM ממספר מקורות.</li><li>מעקב חדשות תחום והפקת תובנות שבועיות.</li><li>CI/CD Assistant לבדיקות ודו"חות.</li></ul></section>
-<section class="card"><h2>Guardrails חובה</h2><ul><li>אישור אנושי לפעולות חיצוניות (מייל/מחיקה/פרסום).</li><li>רשימת כלים מותרת.</li><li>תיעוד מלא של כל צעד.</li><li>Timeout + Retry policy.</li></ul></section>
-<section class="card"><h2>מדדי הצלחה</h2><ul><li>Task success rate.</li><li>Human override rate.</li><li>זמן ביצוע ועלות לכל משימה.</li></ul></section>
+
+<section class="card"><h2>מה זה Agent בפועל?</h2><p>Agent הוא תהליך שמקבל יעד, מתכנן צעדים, משתמש בכלים (API/DB/קבצים), בודק תוצאה, ומבצע תיקון אם צריך.</p></section>
+
+<section class="card"><h2>מתי להשתמש בסוכן?</h2><ul><li>כאשר יש רצף של כמה פעולות ולא פעולה בודדת.</li><li>כאשר צריך לקשר בין כמה מקורות מידע.</li><li>כאשר ערך עסקי נובע מאוטומציה חוזרת.</li></ul></section>
+
+<section class="card"><h2>תבנית Agent אמינה</h2><pre>1) Goal Definition
+2) Plan (max N steps)
+3) Execute tools
+4) Validate output
+5) Human approval (if external action)
+6) Final report + logs</pre></section>
+
+<section class="card"><h2>דוגמה מלאה: "סיכום חדשות AI יומי"</h2>
+<pre>Goal: לסכם חדשות AI יומיות לצוות הנהלה
+
+Plan:
+- שלב 1: למשוך כותרות מ-5 מקורות אמינים
+- שלב 2: לסנן כפילויות ו-clickbait
+- שלב 3: להפיק 5 תובנות עסקיות
+- שלב 4: לצרף קישורי מקור לכל תובנה
+- שלב 5: להכין הודעת סיכום ב-WhatsApp/Email לאישור אנושי
+
+Validation:
+- לפחות מקור אחד לכל פריט
+- ללא טענה ללא מקור
+- אורך סיכום עד 250 מילים</pre>
+</section>
+
+<section class="card"><h2>Guardrails חובה</h2><ul><li>אישור אנושי לפעולות חיצוניות (שליחה, פרסום, מחיקה).</li><li>הגבלת כלים ורשאות לפי משימה.</li><li>Timeout לכל פעולה ו-Retry מוגבל.</li><li>Audit log לכל צעד (מה בוצע, מתי, ולמה).</li></ul></section>
+
+<section class="card"><h2>תבנית מדידה (KPI)</h2><ul><li>Success Rate: כמה משימות הושלמו נכון.</li><li>Override Rate: כמה פעמים אדם תיקן את הסוכן.</li><li>Latency: זמן ביצוע מקצה לקצה.</li><li>Cost per Task: עלות לכל משימה.</li></ul></section>
+
+<section class="card"><h2>תרגול עצמי</h2>
+<p><strong>משימה:</strong> תכנן Agent שמטפל בלידים נכנסים (מייל/טופס) ומעדכן CRM.</p>
+<p><strong>דרישות:</strong> סיווג ליד, העשרה קצרה ממקור חיצוני, וטיוטת תשובה מותאמת.</p>
+<details><summary>פתרון מוצע</summary>
+<pre>Flow מוצע:
+1) Parse lead message
+2) Classify intent (demo/pricing/support)
+3) Enrich with company info (safe source)
+4) Create CRM record
+5) Draft response template
+6) Ask human approval before send
+
+Safety:
+- No outbound send without approval
+- Strip sensitive fields from logs</pre>
+</details>
+</section>
+
 <section class="card"><h2>מקורות והרחבות</h2><p><a href="https://developers.googleblog.com" target="_blank">Google Developers Blog</a> · <a href="https://www.anthropic.com/news" target="_blank">Anthropic News</a> · <a href="https://www.youtube.com/results?search_query=ai+agents+tutorial" target="_blank">YouTube: AI Agents</a></p></section>
 </div></body></html>
