@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>מדריך מקיף: בניית RAG בסיסי</title><style>body{font-family:Arial;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.7}.wrap{max-width:1000px;margin:auto;padding:24px}.card{background:#111a33;border:1px solid #2b3f68;border-radius:12px;padding:14px;margin:12px 0}pre{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px;color:#dbeafe}a{color:#93c5fd}</style></head>
+<body><div class="wrap"><a href="../guides.html">⬅ חזרה למדריכים</a><h1>מדריך מקיף: בניית RAG בסיסי</h1>
+<section class="card"><h2>מה זה RAG?</h2><p>Retrieval-Augmented Generation: אחזור מידע רלוונטי ממקורות שלך, ואז יצירת תשובה שמבוססת על המידע שאוחזר.</p></section>
+<section class="card"><h2>ארכיטקטורה בסיסית (5 שלבים)</h2><ol><li>איסוף מסמכים</li><li>Chunking</li><li>Embeddings + Vector DB</li><li>Retrieval</li><li>Generation עם ציטוטים</li></ol></section>
+<section class="card"><h2>Pipeline מומלץ</h2><pre>documents -> chunks -> embeddings -> vector index
+user query -> embedding -> top-k retrieval -> LLM answer + sources</pre></section>
+<section class="card"><h2>החלטות חשובות</h2><ul><li>Chunk size: בדרך כלל 300–800 טוקנים.</li><li>Top-k: לרוב 3–8 מסמכים.</li><li>Hybrid search: וקטורי + מילולי כשצריך דיוק טרמינולוגי.</li><li>Always cite sources: חובה להציג מקור בכל תשובה.</li></ul></section>
+<section class="card"><h2>מדדי איכות</h2><ul><li>Precision@k ו-Recall@k לאחזור.</li><li>Faithfulness: האם התשובה נאמנה למקור.</li><li>Latency: זמן תגובה כולל.</li></ul></section>
+<section class="card"><h2>בעיות נפוצות ופתרונות</h2><ul><li>Hallucination → להכריח תשובה “רק מהמקור”.</li><li>Missing context → להגדיל top-k או chunk overlap.</li><li>Duplication → dedup על chunks לפני generation.</li></ul></section>
+<section class="card"><h2>מקורות והרחבות</h2><p><a href="https://arxiv.org/abs/2005.11401" target="_blank">RAG Paper</a> · <a href="https://python.langchain.com/docs/concepts/rag/" target="_blank">LangChain RAG</a> · <a href="https://www.youtube.com/results?search_query=RAG+tutorial" target="_blank">YouTube: RAG Tutorial</a></p></section>
+</div></body></html>
