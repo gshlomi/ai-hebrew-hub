@@ -3,26 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>פורטל AI בעברית</title>
+  <title>AI בעברית — פורטל ידע מקיף</title>
   <style>
-    body{font-family:Arial,sans-serif;background:#0f172a;color:#e2e8f0;margin:0}
-    .wrap{max-width:1000px;margin:auto;padding:24px}
-    a{color:#93c5fd;text-decoration:none}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .card{background:#111827;border:1px solid #334155;border-radius:12px;padding:14px}
+    body{font-family:Arial,sans-serif;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.6}
+    .wrap{max-width:1100px;margin:auto;padding:24px}
+    .hero{background:#111a33;border:1px solid #22345f;padding:18px;border-radius:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+    .card{background:#10182f;border:1px solid #2a3c66;border-radius:12px;padding:14px;color:#dbeafe;text-decoration:none;display:block}
+    .card:hover{border-color:#60a5fa}
+    .muted{color:#9ca3af}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>אתר המידע המקיף ביותר ל‑AI בעברית</h1>
-    <p>מרכז ידע בעברית למודלים, כלים, מדריכים, חדשות ומושגים.</p>
-    <div class="grid">
-      <a class="card" href="models.html">🤖 מודלים</a>
-      <a class="card" href="tools.html">🧰 כלים</a>
-      <a class="card" href="guides.html">📘 מדריכים</a>
-      <a class="card" href="glossary.html">📚 מילון מושגים</a>
-      <a class="card" href="news.html">📰 חדשות ועדכונים</a>
-    </div>
+    <section class="hero">
+      <h1>אתר המידע המקיף ביותר ל‑AI בעברית</h1>
+      <p>מרכז ידע עדכני עם חדשות, הסברים, מדריכים מעשיים, השוואות וכלים — מותאם לקהל ישראלי.</p>
+      <p class="muted">עדכון שוטף: חדשות מתווספות החל מ־1 בחודש הנוכחי עם קישורי מקור והרחבות.</p>
+    </section>
+
+    <section class="grid">
+      <a class="card" href="news.html">📰 חדשות ועדכונים (החל מ־1 בחודש)</a>
+      <a class="card" href="models.html">🤖 מודלים מובילים — GPT, Claude, Gemini, Llama</a>
+      <a class="card" href="tools.html">🧰 כלי AI פרקטיים — כתיבה, קוד, אוטומציה, וידאו</a>
+      <a class="card" href="guides.html">📘 מדריכים מעשיים — פרומפטים, RAG, סוכנים</a>
+      <a class="card" href="glossary.html">📚 מילון מושגים — מונחים חשובים בעברית</a>
+      <a class="card" href="https://github.com/gshlomi/ai-hebrew-hub" target="_blank">🧭 ריפו GitHub של הפרויקט</a>
+    </section>
   </div>
 </body>
 </html>
