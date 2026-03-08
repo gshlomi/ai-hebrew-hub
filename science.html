@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>המדע מאחורי AI — למתחילים</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#0b1020;color:#e5e7eb;margin:0;line-height:1.8}
+    .wrap{max-width:1050px;margin:auto;padding:24px}
+    .hero{background:#111a33;border:1px solid #2b3f68;border-radius:14px;padding:16px}
+    .card{background:#10182f;border:1px solid #2a3c66;border-radius:12px;padding:14px;margin-top:12px}
+    h1,h2{margin:0 0 8px}
+    .muted{color:#9ca3af}
+    a{color:#93c5fd}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="index.html">⬅ חזרה לדף הבית</a>
+
+    <section class="hero">
+      <h1>המדע מאחורי AI — הסבר ברור למתחילים</h1>
+      <p>לא צריך רקע במתמטיקה כדי להבין את העקרונות. בעמוד הזה נסביר מה באמת קורה מאחורי הקלעים של מודלי AI.</p>
+    </section>
+
+    <section class="card">
+      <h2>1) מה זה בכלל AI?</h2>
+      <p><strong>AI</strong> הוא שם כללי לתוכנות שמבצעות משימות שנחשבו בעבר "אנושיות" — כמו כתיבה, זיהוי תמונות, תרגום וקבלת החלטות.</p>
+      <p><strong>LLM</strong> (מודל שפה גדול) הוא סוג של AI שמתמחה בהבנת ויצירת טקסט.</p>
+    </section>
+
+    <section class="card">
+      <h2>2) איך מודל לומד?</h2>
+      <p>בפשטות: נותנים למודל המון דוגמאות (טקסטים, קוד, תמונות), והוא לומד לזהות תבניות סטטיסטיות.</p>
+      <p>במודלי שפה, האימון הבסיסי הוא בעיקר "ניחוש המילה/הטוקן הבא" שוב ושוב, עד שהניחושים משתפרים מאוד.</p>
+    </section>
+
+    <section class="card">
+      <h2>3) מה זו רשת נוירונים?</h2>
+      <p>זו מערכת שכבות שמקבלת קלט, מעבדת אותו, ומחזירה פלט. כל שכבה לומדת חלק אחר של הבעיה.</p>
+      <p>השם "נוירונים" הוא השראה מהמוח, אבל בפועל מדובר בחישובים מתמטיים.</p>
+    </section>
+
+    <section class="card">
+      <h2>4) למה כולם מדברים על Transformer?</h2>
+      <p>Transformer היא הארכיטקטורה שהקפיצה את עולם ה‑LLM. היא משתמשת במנגנון שנקרא <strong>Attention</strong> כדי להבין מה חשוב בכל משפט ביחס לכל שאר המילים.</p>
+      <p>בזכות זה המודל מצליח להבין הקשר רחב יותר ולכתוב תשובות איכותיות.</p>
+    </section>
+
+    <section class="card">
+      <h2>5) מה ההבדל בין Training ל‑Inference?</h2>
+      <p><strong>Training (אימון):</strong> תהליך ארוך ויקר שבו המודל לומד.</p>
+      <p><strong>Inference (הרצה):</strong> שלב השימוש — כשאתה שואל שאלה והמודל עונה.</p>
+    </section>
+
+    <section class="card">
+      <h2>6) למה מודל לפעמים "ממציא"?</h2>
+      <p>זו תופעה שנקראת Hallucination: המודל מייצר תשובה שנשמעת משכנעת אבל לא נכונה עובדתית.</p>
+      <p>איך מצמצמים את זה? מבקשים מקורות, משתמשים ב‑RAG, ומוודאים עובדות לפני החלטות חשובות.</p>
+    </section>
+
+    <section class="card">
+      <h2>7) מה זה RAG בפשטות?</h2>
+      <p><strong>RAG</strong> = קודם מאחזרים מידע ממקורות אמיתיים (מסמכים/מאגר ידע), ואז המודל עונה על בסיס המידע הזה.</p>
+      <p>כך מקבלים תשובות יותר מדויקות, עם ציטוטים שניתן לבדוק.</p>
+    </section>
+
+    <section class="card">
+      <h2>8) ומה זה Fine-tuning?</h2>
+      <p>זה אימון נוסף למודל קיים על דאטה ממוקד, כדי לשפר ביצועים למשימה ספציפית (למשל סגנון כתיבה ארגוני או דומיין מקצועי).</p>
+    </section>
+
+    <section class="card">
+      <h2>9) איך מודדים אם מודל טוב?</h2>
+      <p>משתמשים בבנצ'מרקים (מבחנים), בדיקות איכות אנושיות, ומדדי אמינות כמו דיוק, עקביות, וזמן תגובה.</p>
+    </section>
+
+    <section class="card">
+      <h2>10) כללי אצבע לשימוש חכם ב‑AI</h2>
+      <ul>
+        <li>לתשובות קריטיות — תמיד לבדוק מקור.</li>
+        <li>לנסח בקשה מדויקת עם הקשר ברור.</li>
+        <li>לשמור מידע רגיש מחוץ לפרומפט אם אין צורך.</li>
+        <li>להשתמש בכלי הנכון למשימה (מודל טקסט, תמונה, וידאו וכו').</li>
+      </ul>
+      <p class="muted">המטרה היא לא להחליף חשיבה אנושית — אלא להאיץ אותה.</p>
+    </section>
+
+    <section class="card">
+      <h2>הרחבות מומלצות</h2>
+      <p>
+        <a target="_blank" href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> ·
+        <a target="_blank" href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a> ·
+        <a target="_blank" href="https://www.youtube.com/results?search_query=how+llm+works+for+beginners">YouTube: How LLMs Work</a>
+      </p>
+    </section>
+  </div>
+</body>
+</html>
